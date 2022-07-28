@@ -18,7 +18,7 @@ const Serie = () => {
 
   return (
     <section className='serie-contain'>
-      <NavLink className='nav-link' to='/'>Inicio</NavLink>
+      <NavLink className='btnStart nav-link m-2' to='/'> ← Back</NavLink>
       {/* DESCRIPTION */}
       {
         series.length !== 0

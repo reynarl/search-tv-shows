@@ -18,12 +18,12 @@ function App () {
 
   return (
     <>
-      <section className='d-flex'>
+      <section className='search d-flex'>
         {/* <img onClick={() => { setHome(true) }} src={logo} alt='logo' /> */}
+        <button className='btnStart' onClick={() => { setHome(true) }}>HOME</button>
         <form onSubmit={handleSubmit}>
-          <input ref={inputSearch} type='search' placeholder='Buscar serie' />
+          <input ref={inputSearch} type='search' placeholder='Search...' />
         </form>
-        <button onClick={() => { setHome(true) }}>Inicio</button>
       </section>
       {home ? <Home /> : <ViewSeries text={text} />}
     </>
