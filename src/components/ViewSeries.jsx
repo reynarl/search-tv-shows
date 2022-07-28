@@ -24,6 +24,7 @@ const ViewSeries = ({ text }) => {
                     <ul>
                       {
                         series.map(serie => (
+                          // MOVIE CARD
                           <li key={serie.show.id}>
                             <Link to={`/movies/${serie.show.id}`}>
                               <div>
