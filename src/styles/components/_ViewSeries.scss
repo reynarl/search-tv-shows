@@ -1,3 +1,15 @@
-.hidden{
-  display: none;
+.series-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .title{
+    font-size: 20px;
+  }
+  .typeAndRate{
+    .type{
+      background-color: rgba(0, 110, 255, 0.671);
+      border-radius: 10px;
+      padding: 5px;
+    }
+  }
 }

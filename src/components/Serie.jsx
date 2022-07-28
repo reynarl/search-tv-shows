@@ -1,20 +1,23 @@
 import { useParams, NavLink } from 'react-router-dom'
 
 import useFetch from '../hooks/useFetch'
+import SerieEpisodes from './SerieEpisodes'
+import imgNotFound from '../assets/not-found.jpg'
 
 const Serie = () => {
   const { movieId } = useParams()
 
-  // endpoint
-  const URL = 'https://api.tvmaze.com'
-  const seriesQuery = `${URL}/shows/${movieId}`
+  // endpoints
+  const URL = 'https://api.tvmaze.com/shows'
+  const seriesQuery = `${URL}/${movieId}`
+  const serieEpisodeQuery = `${URL}/${movieId}/seasons`
 
   // using Custom Hook 'useFetch'
   const { series } = useFetch(seriesQuery, '')
-  console.log(series.id)
+  const { series: episodes } = useFetch(serieEpisodeQuery, '')
 
   return (
-    <section>
+    <section className='serie-contain'>
       <NavLink className='nav-link' to='/'>Inicio</NavLink>
       {/* DESCRIPTION */}
       {
@@ -22,19 +25,19 @@ const Serie = () => {
           ? (
             <div className='card-serie card text-bg-dark'>
               {series.image
-                ? <img src={series.image?.original} alt={series?.name} height={500} style={{ objectFit: 'cover' }} />
-                : console.log('PONER OTRA IMAGEN')}
+                ? <img src={series.image?.original} alt={series?.name} height={480} style={{ objectFit: 'cover' }} />
+                : <img src={imgNotFound} alt='not found' />}
               <div className='card-serie-description card-img-overlay d-flex'>
                 <div>
                   {series.image
                     ? <img src={series.image?.medium} alt={series?.name} height={300} style={{ objectFit: 'contain' }} />
-                    : console.log('PONER OTRA IMAGEN')}
-                  <p>⭐{series.rating?.average},0</p>
+                    : <img src={imgNotFound} alt='not found' />}
+                  <p className='rate text-center'><span>{series.rating.average ? `⭐${series.rating.average}` : '⭐ 0,0'}</span></p>
                 </div>
                 <div className='contain-description'>
-                  <h2 className='card-title'>{series?.name} <span className='type'>{series?.type}</span></h2>
-                  <p dangerouslySetInnerHTML={{ __html: series?.summary }} />
-                  {series.genres?.map(genre => (<p className='genre'>{genre}</p>))}
+                  <h2 className='card-title text-center'>{series?.name} <span className='type'>{series?.type}</span></h2>
+                  <p className='description' dangerouslySetInnerHTML={{ __html: series?.summary }} />
+                  {/* {series.genres?.map(genre => (<p className='genre'>{genre}</p>))} */}
                 </div>
               </div>
             </div>
@@ -42,6 +45,7 @@ const Serie = () => {
           : <p>Sin resultados</p>
       }
       {/* EPISODIOS */}
+      <SerieEpisodes episodes={episodes} />
       {/* CAST */}
     </section>
   )

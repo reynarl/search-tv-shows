@@ -1,0 +1,46 @@
+.serie-contain{
+  width: 100%;
+  .card-serie-description{
+    background-color: rgba(0, 0, 0, 0.438);
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+  }
+  .description{
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    width: 100%;
+    // height: 255px;
+    margin: auto;
+    padding: 40px;
+    border-radius: 10px;
+    
+  }
+  .rate{
+    font-size: 25px;
+  }
+  .contain-description{
+    margin-left: 20px;
+    
+  }
+}
+
+.serie-episodes{
+  margin: auto;
+  width: 95%;
+  .contain-serie-seasons{
+    // background-color: aqua;
+    // width: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    // align-items: center;
+  }
+  .contain-seasons{
+    background-color: rgba(0, 0, 0, 0.103);
+    padding: 10px;
+    // width: 180px;
+    margin: auto;
+  }
+}
