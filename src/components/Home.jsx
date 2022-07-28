@@ -1,5 +1,15 @@
+import useFetch from '../hooks/useFetch'
 
-const Home = ({ schedule }) => {
+const Home = () => {
+  // endpoints
+  const URL = 'https://api.tvmaze.com'
+  const scheduleQuery = `${URL}/schedule?date=2022-07-27`
+  // const seriesQuery = `${URL}/shows`
+
+  // using Custom Hook 'useFetch'
+  const { series: schedule } = useFetch(scheduleQuery, '')
+  // const { series } = useFetch(seriesQuery, '')
+
   return (
     <>
       <ul>
