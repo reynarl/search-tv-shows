@@ -8,8 +8,6 @@ import useFetch from './hooks/useFetch'
 function App () {
   const inputSearch = useRef(null)
   const [text, setText] = useState('')
-  const [series, setSeries] = useState([])
-  const [schedule, setSchedule] = useState([])
   const [home, setHome] = useState(true)
 
   // endpoints
@@ -18,21 +16,8 @@ function App () {
   const seriesQuery = `${URL}/search/shows?q=${text}`
 
   // using Custom Hook 'useFetch'
-  useFetch(schedule, setSchedule, scheduleQuery, '')
-  useFetch(series, setSeries, seriesQuery, text)
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const { data } = await axios.get(`${url}/search/shows?q=${text}`)
-  //       setSeries(data)
-  //     } catch (error) {
-  //       console.log(error.message)
-  //       setSeries([])
-  //     }
-  //   }
-  //   getData()
-  // }, [text])
+  const { series: schedule } = useFetch(scheduleQuery, '')
+  const { series } = useFetch(seriesQuery, text)
 
   const handleSubmit = (e) => {
     e.preventDefault()

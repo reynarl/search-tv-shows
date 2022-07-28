@@ -14,25 +14,24 @@ const ViewSeries = ({ text, series }) => {
                   ? (
                     <ul>
                       {
-                        series.map(serie => {
-                          return (
-                            <li key={serie.show.id}>
+                        series.map(serie => (
+                          <li key={serie.show.id}>
+                            <div>
+                              {serie.show.image
+                                ? <img src={serie.show.image.medium} alt={serie.show.name} />
+                                : console.log('PONER OTRA IMAGEN')}
+                              <p className='title'>{serie.show.name}</p>
                               <div>
-                                {serie.show.image
-                                  ? <img src={serie.show.image.medium} alt={serie.show.name} />
-                                  : console.log('PONER OTRA IMAGEN')}
-                                <p className='title'>{serie.show.name}</p>
-                                <div>
-                                  <p>{serie.show.type} <span>{serie.show.rating.average}</span></p>
-                                  {/* <p dangerouslySetInnerHTML={{ __html: serie.show.summary }} /> */}
-                                  <p>{serie.show.status}</p>
-                                  <p>{serie.show.language}</p>
-                                  {serie.show.webChannel ? <p>({serie.show.webChannel.name})</p> : null}
-                                </div>
+                                <p>{serie.show.type} <span>{serie.show.rating.average}</span></p>
+                                {/* <p dangerouslySetInnerHTML={{ __html: serie.show.summary }} /> */}
+                                <p>{serie.show.status}</p>
+                                <p>{serie.show.language}</p>
+                                {serie.show.webChannel ? <p>({serie.show.webChannel.name})</p> : null}
                               </div>
-                            </li>
-                          )
-                        })
+                            </div>
+                          </li>
+                        )
+                        )
                       }
                     </ul>
                     )

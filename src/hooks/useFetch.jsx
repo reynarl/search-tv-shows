@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-const useFetch = (series, setSeries, url, state) => {
+const useFetch = (url, state) => {
+  const [series, setSeries] = useState([])
   useEffect(() => {
     const getData = async () => {
       try {
