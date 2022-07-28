@@ -1,6 +1,15 @@
-const ViewSeries = ({ text, series }) => {
-  // const [date, setDate] = useState('')
-  // const year = new Date(date)
+import { Link } from 'react-router-dom'
+
+import useFetch from '../hooks/useFetch'
+import Home from './Home'
+
+const ViewSeries = ({ text }) => {
+  // endpoint
+  const URL = 'https://api.tvmaze.com'
+  const seriesQuery = `${URL}/search/shows?q=${text}`
+
+  // using Custom Hook 'useFetch'
+  const { series } = useFetch(seriesQuery, text)
 
   return (
     <>
@@ -16,19 +25,21 @@ const ViewSeries = ({ text, series }) => {
                       {
                         series.map(serie => (
                           <li key={serie.show.id}>
-                            <div>
-                              {serie.show.image
-                                ? <img src={serie.show.image.medium} alt={serie.show.name} />
-                                : console.log('PONER OTRA IMAGEN')}
-                              <p className='title'>{serie.show.name}</p>
+                            <Link to={`/movies/${serie.show.id}`}>
                               <div>
-                                <p>{serie.show.type} <span>{serie.show.rating.average}</span></p>
-                                {/* <p dangerouslySetInnerHTML={{ __html: serie.show.summary }} /> */}
-                                <p>{serie.show.status}</p>
-                                <p>{serie.show.language}</p>
-                                {serie.show.webChannel ? <p>({serie.show.webChannel.name})</p> : null}
+                                {serie.show.image
+                                  ? <img src={serie.show.image.medium} alt={serie.show.name} />
+                                  : console.log('PONER OTRA IMAGEN')}
+                                <p className='title'>{serie.show.name}</p>
+                                <div>
+                                  <p>{serie.show.type} <span>{serie.show.rating.average}</span></p>
+                                  {/* <p dangerouslySetInnerHTML={{ __html: serie.show.summary }} /> */}
+                                  <p>{serie.show.status}</p>
+                                  <p>{serie.show.language}</p>
+                                  {serie.show.webChannel ? <p>({serie.show.webChannel.name})</p> : null}
+                                </div>
                               </div>
-                            </div>
+                            </Link>
                           </li>
                         )
                         )
@@ -39,7 +50,7 @@ const ViewSeries = ({ text, series }) => {
               }
             </section>
             )
-          : <p>Ingresa el nombre de una serie</p>
+          : <Home />
       }
     </>
   )
